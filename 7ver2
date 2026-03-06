@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Task 1: Checkout Updated Repo') {
+            steps {
+                // This pulls the latest changes you committed from your IDE to GitHub
+                checkout scm
+                echo "Successfully synchronized with the latest GitHub commits."
+            }
+        }
+
+        stage('Task 2: List Workspace Contents') {
+            steps {
+                echo "--- Listing all files in the Workspace ---"
+                // 'dir' is the Windows command to list files/folders
+                bat 'dir' 
+            }
+        }
+
+        stage('Task 3: Display System Time') {
+            steps {
+                echo "--- Current System Time ---"
+                // 'time /t' gives a simplified time, 'time' gives precise time
+                bat 'time /t'
+                // Alternatively, to show the date and time:
+                bat 'echo %DATE% %TIME%'
+            }
+        }
+    }
+}
