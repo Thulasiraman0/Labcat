@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Task 1: Checkout') {
+            steps {
+                // Pulls the project files from your GitHub repository
+                checkout scm
+                
+                // Task 2: Display execution started message
+                echo '-------------------------------------------------------'
+                echo 'NOTICE: Jenkins Pipeline Execution has STARTED.'
+                echo '-------------------------------------------------------'
+            }
+        }
+
+        stage('Simulate Work') {
+            steps {
+                echo 'Processing project files...'
+                // A small delay to simulate real work happening
+                sleep time: 2, unit: 'SECONDS'
+            }
+        }
+    }
+
+    // Task 3: Display completion message using the 'post' block
+    post {
+        always {
+            echo '-------------------------------------------------------'
+            echo 'NOTICE: Jenkins Pipeline Execution is now COMPLETE.'
+            echo '-------------------------------------------------------'
+        }
+    }
+}
