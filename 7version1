@@ -1,0 +1,31 @@
+pipeline {
+    agent any 
+
+    stages {
+        stage('Start') {
+            steps {
+                // Task 3: Print a message indicating start
+                echo '--------------------------------------------------'
+                echo 'LOG: Pipeline execution has officially started.'
+                echo '--------------------------------------------------'
+            }
+        }
+
+        stage('Checkout Source') {
+            steps {
+                // Task 1: Checkout code
+                // 'scm' is a special variable that tells Jenkins to use 
+                // the repository that contains this Jenkinsfile.
+                checkout scm
+            }
+        }
+
+        stage('Display Workspace') {
+            steps {
+                // Task 2: Display Jenkins workspace path
+                // In Groovy, we use "${WORKSPACE}" to print the env variable
+                echo "SUCCESS: The project files are located in: ${env.WORKSPACE}"
+            }
+        }
+    }
+}
