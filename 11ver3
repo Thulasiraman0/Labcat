@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Task 1: Checkout') {
+            steps {
+                // Pulls the latest commit from your GitHub repository
+                checkout scm
+                echo "Latest repository files have been checked out."
+            }
+        }
+
+        stage('Task 2 & 3: Create Status File') {
+            steps {
+                // Task 2: Create 'status.txt'
+                // Task 3: Write 'Build Successful' into that file
+                // The '>' operator creates the file and writes the text simultaneously
+                bat 'echo Build Successful > status.txt'
+                
+                echo "File 'status.txt' has been created in the workspace."
+            }
+        }
+
+        stage('Verification') {
+            steps {
+                echo "Reading the contents of status.txt:"
+                // Verify the content by printing it to the console
+                bat 'type status.txt'
+            }
+        }
+    }
+}
