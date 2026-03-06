@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Task 1: Update & Checkout') {
+            steps {
+                // Task 1: Pull the latest version of the repo
+                checkout scm
+                echo "Repository synchronized with the latest GitHub commits."
+            }
+        }
+
+        stage('Task 2: Processing Files') {
+            steps {
+                // Task 2: Indicate that file processing has started
+                echo "ACTION: Now processing project files..."
+                
+                // We use a small delay to simulate a real build/test process
+                sleep time: 3, unit: 'SECONDS'
+                
+                echo "STATUS: Analyzing workspace data..."
+            }
+        }
+
+        stage('Task 3: Finalize') {
+            steps {
+                // Task 3: Indicate that processing is finished
+                echo "-------------------------------------------------------"
+                echo "SUCCESS: Project file processing is now COMPLETE."
+                echo "-------------------------------------------------------"
+            }
+        }
+    }
+}
