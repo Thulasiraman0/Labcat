@@ -23,8 +23,8 @@ pipeline {
         stage('Task 3: Display Final Status') {
             steps {
                 echo "--- Showing full status.txt history ---"
-                // Read the file to the console
-                bat 'bat status.txt'
+                // Change 'bat' to 'type' here
+                bat 'type status.txt'
             }
         }
     }
