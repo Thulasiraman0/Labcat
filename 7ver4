@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Task 1: Checkout') {
+            steps {
+                // Pulls the latest changes from your GitHub repository
+                checkout scm
+                echo "Repository updated successfully."
+            }
+        }
+
+        stage('Task 2: Append Build Number') {
+            steps {
+                // Task 2: '>>' appends text to the end of the file
+                // ${env.BUILD_NUMBER} is a built-in Jenkins variable
+                bat "echo ------------------------------- >> buildlog.txt"
+                bat "echo This is Jenkins Build Number: ${env.BUILD_NUMBER} >> buildlog.txt"
+                bat "echo ------------------------------- >> buildlog.txt"
+                
+                echo "Build number ${env.BUILD_NUMBER} has been appended to buildlog.txt"
+            }
+        }
+
+        stage('Task 3: Display Updated Contents') {
+            steps {
+                echo "--- Showing full buildlog.txt history ---"
+                // Task 3: Display the file content in the console
+                bat 'type buildlog.txt'
+            }
+        }
+    }
+}
